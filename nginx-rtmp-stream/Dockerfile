@@ -17,4 +17,4 @@ EXPOSE 80 1935
 CMD ["tail", "-f", "/dev/null"]
 
 # Para producción, descomenta la siguiente línea:
-# CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]

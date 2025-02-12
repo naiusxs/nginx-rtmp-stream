@@ -4,17 +4,17 @@ FROM tiangolo/nginx-rtmp
 # Copiar la configuración personalizada de Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copiar los archivos HTML a la ruta donde Nginx puede servirlos
-COPY public /usr/share/nginx/html
+# Copiar los archivos HTML a la ruta correcta
+COPY public /usr/local/nginx/html
 
-# Instalar herramientas necesarias para acceso remoto (bash y otras)
-RUN apt-get update && apt-get install -y bash curl vim
+# Instalar herramientas necesarias
+RUN apt-get update && apt-get install -y nginx bash curl vim
 
-# Exponer los puertos necesarios para HTTP y RTMP
+# Exponer los puertos HTTP (80) y RTMP (1935)
 EXPOSE 80 1935
 
-# Comando por defecto que mantiene el contenedor activo (temporal para pruebas)
+# Mantener el contenedor activo para debug (opción temporal)
 CMD ["tail", "-f", "/dev/null"]
 
-# Si quieres iniciar Nginx automáticamente para producción, usa este comando en su lugar:
+# Para producción, descomenta la siguiente línea:
 # CMD ["nginx", "-g", "daemon off;"]

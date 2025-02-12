@@ -9,6 +9,8 @@ COPY public /usr/share/nginx/html
 # Instalar herramientas necesarias (bash, sh, curl, vim)
 RUN apt-get update && apt-get install -y bash curl vim busybox
 
+ENTRYPOINT ["/bin/bash"]
+
 # Exponer los puertos HTTP y RTMP
 EXPOSE 80 1935
 
@@ -16,4 +18,4 @@ EXPOSE 80 1935
 CMD ["tail", "-f", "/dev/null"]
 
 # Para producción, descomenta la siguiente línea:
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
